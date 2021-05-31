@@ -1,0 +1,15 @@
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: red;
+	background-image: url('drop.png');
+}
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 20px
+}
+
+.info{
+	color:white;
+	font-size: 30px;
+}
