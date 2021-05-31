@@ -1,7 +1,7 @@
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background: red;
-	background-image: url('drop.png');
+	background: green;
+	
 }
 .container {
 	display: grid;

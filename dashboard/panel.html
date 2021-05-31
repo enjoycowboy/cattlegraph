@@ -9,6 +9,10 @@
 	</style>
 </head>
 <body>
+	<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="POST">
+	<input type='file' id='fileinput'>
+	<input type='button' id='btnLoad' value='Carregar Arquivo' onclick="loadFile();">
+	</form>
 	<span>Lote:</span>
 	<input type="text" id="lote_input">
 	<button onclick="buscaLote()">Buscar Lote</button>
