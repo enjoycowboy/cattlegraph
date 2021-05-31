@@ -820,107 +820,51 @@ function encontraBoi(code){
 	);
 }
          
-loteRep.on('change', (newval) =>{
-	var found = encontraBoi(newval);
-	try{
-		loteEl.innerHTML = "Lote: " + found[0].Lote;
-	}
-	catch(err){
-		loteEl.innerHTML = toString(err);
-	}
-})
 
-vendedorRep.on('change', (newval) =>{
+loteRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	vendedorEl.innerHTML = "Vendedor: " + found[0].Vendedor;
-}
-	catch(err){
-		vendedorEl.innerHTML = "Vendedor: ";
-	}
+	found[0].hasOwnProperty('Lote') ? loteEl.innerHTML = "Lote: " + found[0].Lote : loteEl.innerHTML = " ";
 })
-quantRep.on('change', (newval) =>{
+vendedorRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	quantEl.innerHTML = "Quant: " + found[0].Quant;
-	}
-	catch(err){
-		quantEl.innerHTML = "Quant: ";
-	}
+	found[0].hasOwnProperty('Vendedor') ? vendedorEl.innerHTML = "Vendedor: " + found[0].Vendedor : vendedorEl.innerHTML = " ";
 })
-tipoRep.on('change', (newval) =>{
+quantRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	tipoEl.innerHTML = "Tipo: " + found[0].Tipo;
-	}
-	catch(err){
-		tipoEl.innerHTML = err;
-	}
+	found[0].hasOwnProperty('Quant') ? quantEl.innerHTML = "Quant: " + found[0].Quant : quantEl.innerHTML = " ";
 })
-racaRep.on('change', (newval) =>{
+tipoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	racaEl.innerHTML = "Raça: " + found[0].Raca;
-	}
-	catch(err){
-		racaEl.innerHTML = "Raça: ";
-	}
+	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = "Tipo: " + found[0].Tipo : tipoEl.innerHTML = " ";
 })
-pesototRep.on('change', (newval) =>{
+racaRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	pesototEl.innerHTML = "Peso Total: " + found[0].Kg_Total;
-	}
-	catch(err){
-		pesototEl.innerHTML = "pesotot: ";
-	}
+	found[0].hasOwnProperty('Raca') ? racaEl.innerHTML = "Raca: " + found[0].Raca : racaEl.innerHTML = " ";
 })
-pesomedRep.on('change', (newval) =>{
+pesototRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	pesomedEl.innerHTML = "Peso Médio: " + found[0].Peso_medio;
-	}
-	catch(err){
-		pesomedEl.innerHTML = "pesomed: ";
-	}
+	found[0].hasOwnProperty('Kg_Total') ? pesototEl.innerHTML = "Kg_Total: " + found[0].Kg_Total : pesototEl.innerHTML = " ";
 })
-valorunRep.on('change', (newval) =>{
+pesomedRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	valorunEl.innerHTML = "Valor por cabeça: \nR$" + found[0].Valor_por_cabeça;
-	}
-	catch(err){
-		valorunEl.innerHTML = "Valor por cabeça: ";
-	}
+	found[0].hasOwnProperty('Peso_medio') ? pesomedEl.innerHTML = "Peso_medio: " + found[0].Peso_medio : pesomedEl.innerHTML = " ";
 })
-valortotRep.on('change', (newval) =>{
+valorunRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	valortotEl.innerHTML = "Valor Total:" + found[0].Valor_Total;
-	}
-	catch(err){
-		valortotEl.innerHTML = "valortot: ";
-	}
+	found[0].hasOwnProperty('Valor_por_cabeça') ? valorunEl.innerHTML = "Valor_por_cabeça: " + found[0].Valor_por_cabeça : valorunEl.innerHTML = " ";
 })
-prazoRep.on('change', (newval) =>{
+valortotRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	prazoEl.innerHTML = "Prazo: " + found[0].Prazo;
-	}
-	catch(err){
-		prazoEl.innerHTML = "prazo: ";
-	}
+	found[0].hasOwnProperty('Valor_Total') ? valortotEl.innerHTML = "Valor_Total: " + found[0].Valor_Total : valortotEl.innerHTML = " ";
 })
-lancamentoRep.on('change', (newval) =>{
+prazoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	try{
-	lancamentoEl.innerHTML = "Lançamento: " + found[0].Lancamento;
-	}
-	catch(err){
-		lancamentoEl.innerHTML = "lancamento: ";
-	}
- })
-
+	found[0].hasOwnProperty('Prazo') ? prazoEl.innerHTML = "Prazo: " + found[0].Prazo : prazoEl.innerHTML = " ";
+})
+lancamentoRep.on('change', (newval) => {
+	var found = encontraBoi(newval);
+	found[0].hasOwnProperty('Lancamento') ? lancamentoEl.innerHTML = "Lancamento: " + found[0].Lancamento : lancamentoEl.innerHTML = " ";
+})
 nodecg.listenFor('atualiza', (newval) => {
 	prazoEl.innerHTML = "Prazo: " + newval.Prazo;
 	lanceEl.innerHTML = "R$ " + newval.Valor;

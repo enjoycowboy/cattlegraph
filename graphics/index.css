@@ -1,7 +1,7 @@
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background: red;
-	background-image: url('drop.png');
+	background: rgba(0, 0, 0, 0);
+	
 }
 .container {
 	display: grid;
@@ -10,6 +10,6 @@ body {
 }
 
 .info{
-	color:white;
+	color:rgb(0, 0, 0);
 	font-size: 30px;
 }
