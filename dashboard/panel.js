@@ -8,6 +8,6 @@ function update(){
 }
 
 function buscaLote(){
-	const data = {input:loteInput.value};
+	const data = loteInput.value;
 	nodecg.sendMessage('load', data);
 }

@@ -927,17 +927,17 @@ nodecg.listenFor('atualiza', (newval) => {
 })
 
 nodecg.listenFor('load', (newval) => {
-	loteRep.value = newval.input;
-	vendedorRep.value = newval.input;
-	quantRep.value = newval.input;
-	tipoRep.value = newval.input;
-	racaRep.value = newval.input;
-	pesototRep.value = newval.input;
-	pesomedRep.value = newval.input;
-	valorunRep.value = newval.input;
-	valortotRep.value = newval.input;
-	prazoRep.value = newval.input;
-	lancamentoRep.value = newval.input;
+	loteRep.value = newval;
+	vendedorRep.value = newval;
+	quantRep.value = newval;
+	tipoRep.value = newval;
+	racaRep.value = newval;
+	pesototRep.value = newval;
+	pesomedRep.value = newval;
+	valorunRep.value = newval;
+	valortotRep.value = newval;
+	prazoRep.value = newval;
+	lancamentoRep.value = newval;
 })
 
 
