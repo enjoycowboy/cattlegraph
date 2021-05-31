@@ -8,11 +8,11 @@ var data = [
 	{
 		"Ordem": "2",
 		"Lote": "26",
-		"Vendedor": "a",
+		"Vendedor": "Dom Pedro",
 		"Quant": "3",
 		"Tipo": "Vacas c/ cria (3F)",
-		"Raca": "a",
-		"Kg_Total": "a",
+		"Raca": "Angus",
+		"Kg_Total": "700",
 		"Peso_medio": "a",
 		"Valor_por_cabeça": "1750",
 		"Valor_total": "a",
@@ -796,6 +796,7 @@ const valorunRep = nodecg.Replicant('valorun');
 const valortotRep = nodecg.Replicant('valortot');
 const prazoRep = nodecg.Replicant('prazo');
 const lancamentoRep = nodecg.Replicant('lancamento');
+const valorkgRep = nodecg.Replicant('valorkg');
 
 
 
@@ -811,6 +812,7 @@ const valortotEl = document.getElementById('valortot');
 const prazoEl = document.getElementById('prazo');
 const lancamentoEl = document.getElementById('lancamento');
 const lanceEl = document.getElementById('lance');
+const valorkgEl = document.getElementById('valorkg');
 
 function encontraBoi(code){
 	return data.filter(
@@ -823,51 +825,59 @@ function encontraBoi(code){
 
 loteRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Lote') ? loteEl.innerHTML = "Lote: " + found[0].Lote : loteEl.innerHTML = " ";
+	found[0].hasOwnProperty('Lote') ? loteEl.innerHTML = "Lote: " + found[0].Lote : loteEl.innerHTML = "Lote: ";
 })
 vendedorRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Vendedor') ? vendedorEl.innerHTML = "Vendedor: " + found[0].Vendedor : vendedorEl.innerHTML = " ";
+	found[0].hasOwnProperty('Vendedor') ? vendedorEl.innerHTML = "Vendedor: " + found[0].Vendedor : vendedorEl.innerHTML = "Vendedor: ";
 })
 quantRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Quant') ? quantEl.innerHTML = "Quant: " + found[0].Quant : quantEl.innerHTML = " ";
+	found[0].hasOwnProperty('Quant') ? quantEl.innerHTML = "Quant: " + found[0].Quant : quantEl.innerHTML = "Quant: ";
 })
 tipoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = found[0].Tipo : tipoEl.innerHTML = " ";
+	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = "Tipo: "+ found[0].Tipo : tipoEl.innerHTML = "Tipo: ";
 })
 racaRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Raca') ? racaEl.innerHTML = "Raca: " + found[0].Raca : racaEl.innerHTML = " ";
+	found[0].hasOwnProperty('Raca') ? racaEl.innerHTML = "Raça: " + found[0].Raca : racaEl.innerHTML = "Raça: ";
 })
 pesototRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Kg_Total') ? pesototEl.innerHTML = "Peso Total: " + found[0].Kg_Total : pesototEl.innerHTML = " ";
+	found[0].hasOwnProperty('Kg_Total') ? pesototEl.innerHTML = "Peso: " + found[0].Kg_Total : pesototEl.innerHTML = "Peso: ";
 })
 pesomedRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Peso_medio') ? pesomedEl.innerHTML = "Peso Médio: " + found[0].Peso_medio : pesomedEl.innerHTML = " ";
+	found[0].hasOwnProperty('Peso_medio') ? pesomedEl.innerHTML = "Peso Médio: " + found[0].Peso_medio : pesomedEl.innerHTML = "Peso Médio: ";
 })
 valorunRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Valor_por_cabeça') ? valorunEl.innerHTML = "Valor por cabeça: " + found[0].Valor_por_cabeça : valorunEl.innerHTML = " ";
+	found[0].hasOwnProperty('Valor_por_cabeça') ? valorunEl.innerHTML = "Valor por cabeça: " + found[0].Valor_por_cabeça : valorunEl.innerHTML = "Valor por cabeça: ";
 })
 valortotRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Valor_Total') ? valortotEl.innerHTML = "Valor Total: " + found[0].Valor_Total : valortotEl.innerHTML = " ";
+	found[0].hasOwnProperty('Valor_Total') ? valortotEl.innerHTML = "Valor Total: " + found[0].Valor_Total : valortotEl.innerHTML = "Valor Total: ";
 })
 prazoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Prazo') ? prazoEl.innerHTML = "Prazo: " + found[0].Prazo : prazoEl.innerHTML = " ";
+	found[0].hasOwnProperty('Prazo') ? prazoEl.innerHTML = "Prazo: " + found[0].Prazo : prazoEl.innerHTML = "Prazo: ";
 })
 lancamentoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Lancamento') ? lancamentoEl.innerHTML = "Lançamento: " + found[0].Lancamento : lancamentoEl.innerHTML = " ";
+	found[0].hasOwnProperty('Lancamento') ? lanceEl.innerHTML = found[0].Lancamento : lancamentoEl.innerHTML = "Lançamento: ";
 })
+
 nodecg.listenFor('atualiza', (newval) => {
 	prazoEl.innerHTML = "Prazo: " + newval.Prazo;
-	lanceEl.innerHTML = "R$ " + newval.Valor;
+	lanceEl.innerHTML = + newval.Valor;
+	var found = encontraBoi(loteRep.value);
+	if (found[0].hasOwnProperty('Kg_Total')) {
+		valorkgEl.innerHTML ="Valor por peso:" +(newval.Valor/(found[0].Kg_Total)).toFixed(2).replace(".",",");	;
+	} else if (found[0].hasOwnProperty('Quant')) {
+		valorunEl.innerHTML ="Valor por cabeça:" + newval.Valor/found[0].Quant + " p/ cabeça";		
+	}
+	
 })
 
 nodecg.listenFor('load', (newval) => {
@@ -882,6 +892,12 @@ nodecg.listenFor('load', (newval) => {
 	valortotRep.value = newval;
 	prazoRep.value = newval;
 	lancamentoRep.value = newval;
+	var found = encontraBoi(newval);
+	found[0].hasOwnProperty('Kg_Total')? valorkgEl.innerHTML = "Valor por peso: " + (found[0].Lancamento / (found[0].Kg_Total)).toFixed(2).replace(".", ",") : valorkgEl.innerHTML = "Valor por peso: "
+	if (found[0].hasOwnProperty('Quant')) {
+		valorunEl.innerHTML = "Valor por cabeça: " + (found[0].Lancamento / (found[0].Quant)).toFixed(2).replace(".",",") + " p/ cabeça";
+	}
+
 })
 
 
