@@ -835,7 +835,7 @@ quantRep.on('change', (newval) => {
 })
 tipoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = "Tipo: " + found[0].Tipo : tipoEl.innerHTML = " ";
+	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = found[0].Tipo : tipoEl.innerHTML = " ";
 })
 racaRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
@@ -843,19 +843,19 @@ racaRep.on('change', (newval) => {
 })
 pesototRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Kg_Total') ? pesototEl.innerHTML = "Kg_Total: " + found[0].Kg_Total : pesototEl.innerHTML = " ";
+	found[0].hasOwnProperty('Kg_Total') ? pesototEl.innerHTML = "Peso Total: " + found[0].Kg_Total : pesototEl.innerHTML = " ";
 })
 pesomedRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Peso_medio') ? pesomedEl.innerHTML = "Peso_medio: " + found[0].Peso_medio : pesomedEl.innerHTML = " ";
+	found[0].hasOwnProperty('Peso_medio') ? pesomedEl.innerHTML = "Peso Médio: " + found[0].Peso_medio : pesomedEl.innerHTML = " ";
 })
 valorunRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Valor_por_cabeça') ? valorunEl.innerHTML = "Valor_por_cabeça: " + found[0].Valor_por_cabeça : valorunEl.innerHTML = " ";
+	found[0].hasOwnProperty('Valor_por_cabeça') ? valorunEl.innerHTML = "Valor por cabeça: " + found[0].Valor_por_cabeça : valorunEl.innerHTML = " ";
 })
 valortotRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Valor_Total') ? valortotEl.innerHTML = "Valor_Total: " + found[0].Valor_Total : valortotEl.innerHTML = " ";
+	found[0].hasOwnProperty('Valor_Total') ? valortotEl.innerHTML = "Valor Total: " + found[0].Valor_Total : valortotEl.innerHTML = " ";
 })
 prazoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
@@ -863,7 +863,7 @@ prazoRep.on('change', (newval) => {
 })
 lancamentoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Lancamento') ? lancamentoEl.innerHTML = "Lancamento: " + found[0].Lancamento : lancamentoEl.innerHTML = " ";
+	found[0].hasOwnProperty('Lancamento') ? lancamentoEl.innerHTML = "Lançamento: " + found[0].Lancamento : lancamentoEl.innerHTML = " ";
 })
 nodecg.listenFor('atualiza', (newval) => {
 	prazoEl.innerHTML = "Prazo: " + newval.Prazo;
