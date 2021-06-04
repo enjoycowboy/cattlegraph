@@ -90,9 +90,9 @@ nodecg.listenFor('valor', (newval) => {
 	lanceEl.innerHTML = newval;
 	var found = encontraBoi(loteRep.value);
 	if (found[0].hasOwnProperty('Kg_Total')) {
-		valorkgEl.innerHTML ="Valor por peso:" +(newval.Valor/(found[0].Kg_Total)).toFixed(2).replace(".",",");	;
+		valorkgEl.innerHTML ="Valor por peso:" +(newval/(found[0].Kg_Total)).toFixed(2).replace(".",",");	;
 	} else if (found[0].hasOwnProperty('Quant')) {
-		valorunEl.innerHTML ="Valor por cabeça:" + newval.Valor/found[0].Quant + " p/ cabeça";		
+		valorunEl.innerHTML ="Valor por cabeça:" + newval/found[0].Quant + " p/ cabeça";		
 	}
 	
 })
@@ -121,12 +121,12 @@ nodecg.listenFor('load', (newval) => {
 
 })
 
-nodecg.listenfor('novolote', (newval) => {
+nodecg.listenFor('novolote', (newval) => {
 	loteEl.innerHTML = "Lote: " + newval.lote;
 	quantEl.innerHTML = "Quant: " + newval.quant;
 	tipoEl.innerHTML = "Tipo: " + newval.tipo;
 	racaEl.innerHTML = "Raca: " + newval.raca;
 	vendedorEl.innerHTML = "Vend: " + newval.vend;
 	pesototEl.innerHTML = "Peso: " + newval.peso;
-	lancamentoEl.innerHTML = "Value:" + newval.value;
+	lanceEl.innerHTML = newval.valor;
 })

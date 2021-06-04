@@ -68,7 +68,7 @@ function novoLote(){
 	raca:nl_racaElm.value,
 	vend:nl_vendElm.value,
 	peso:nl_pesoElm.value,
-	value:nl_valueElm.value}
+	valor:nl_valueElm.value}
 	
 	nodecg.sendMessage('novolote', data);
 }

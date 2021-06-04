@@ -11,8 +11,9 @@ module.exports = function (nodecg) {
 	const fileData = nodecg.Replicant('filedata');
 
 	fileData.on('change', (newval) =>{
-		nodecg.log.info("loaded");
+		nodecg.log.info("importando");
 		nodecg.log.info(newval);
+		nodecg.log.info("---carregado---");
 	})
 
 	nodecg.listenFor('prazo', (newval) =>{
@@ -20,11 +21,18 @@ module.exports = function (nodecg) {
 	})
 
 	nodecg.listenFor('valor', (newval) =>{
-		nodecg.log.info("valor alterado para" + newval);
+		nodecg.log.info("valor alterado para " + newval);
 	})
 
 	nodecg.listenFor('novolote', (newval) =>{
 		nodecg.log.info("novo lote criado:\n");
-		nodecg.log.info(newval);
+		
+		nodecg.log.info("Lote: " + newval.lote)
+		nodecg.log.info("Quant: " + newval.quant)
+		nodecg.log.info("Tipo: " + newval.tipo)
+		nodecg.log.info("Raca: " + newval.raca)
+		nodecg.log.info("Vend: " + newval.vend)
+		nodecg.log.info("Peso: " + newval.peso)
+		nodecg.log.info("Valor: " + newval.valor)
 	})
 };
