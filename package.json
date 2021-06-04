@@ -1,6 +1,6 @@
 {
-  "name": "test-1",
-  "version": "0.0.0",
+  "name": "cattlegraph",
+  "version": "1.0.0",
   "description": "",
   "homepage": "",
   "author": {
@@ -37,6 +37,6 @@
       }
     ]
   },
-  "repository": "https://github.com/nodecg/nodecg.git",
+  "repository": "https://github.com/enjoycowboy/cattlegraph.git",
   "license": "unlicense"
 }
