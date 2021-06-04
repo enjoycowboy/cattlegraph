@@ -3,9 +3,22 @@ const prazoInput = document.getElementById('prazo_input');
 const valorInput = document.getElementById('preco_input');
 const fileData = nodecg.Replicant('filedata');
 
-function update(){
-	const data = {Prazo:prazoInput.value, Valor:valorInput.value};
-	nodecg.sendMessage('atualiza', data);
+const nl_loteElm = document.getElementById('nl_lote');
+const nl_quantElm = document.getElementById('nl_quant');
+const nl_tipoElm = document.getElementById('nl_tipo');
+const nl_racaElm = document.getElementById('nl_raca');
+const nl_vendElm = document.getElementById('nl_vend');
+const nl_pesoElm = document.getElementById('nl_peso');
+const nl_valueElm = document.getElementById('nl_value');
+
+function atualizaValor(){
+	const data = valorInput.value;
+	nodecg.sendMessage('valor', data);
+}
+
+function atualizaPrazo(){
+	const data = prazoInput.value;
+	nodecg.sendMessage('prazo', data);
 }
 
 function buscaLote(){
@@ -45,4 +58,17 @@ function loadFile() {
 	}
 
 	
+}
+
+function novoLote(){
+	const data = {
+	lote:nl_loteElm.value,
+	quant:nl_quantElm.value,
+	tipo:nl_tipoElm.value,
+	raca:nl_racaElm.value,
+	vend:nl_vendElm.value,
+	peso:nl_pesoElm.value,
+	value:nl_valueElm.value}
+	
+	nodecg.sendMessage('novolote', data);
 }

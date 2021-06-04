@@ -12,6 +12,19 @@ module.exports = function (nodecg) {
 
 	fileData.on('change', (newval) =>{
 		nodecg.log.info("loaded");
-		nodecg.log.info(toString(newval));
+		nodecg.log.info(newval);
+	})
+
+	nodecg.listenFor('prazo', (newval) =>{
+		nodecg.log.info("prazo alterado para " + newval);
+	})
+
+	nodecg.listenFor('valor', (newval) =>{
+		nodecg.log.info("valor alterado para" + newval);
+	})
+
+	nodecg.listenFor('novolote', (newval) =>{
+		nodecg.log.info("novo lote criado:\n");
+		nodecg.log.info(newval);
 	})
 };

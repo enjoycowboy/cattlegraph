@@ -86,9 +86,8 @@ lancamentoRep.on('change', (newval) => {
 	found[0].hasOwnProperty('Lancamento') ? lanceEl.innerHTML = found[0].Lancamento : lancamentoEl.innerHTML = "Lançamento: ";
 })
 
-nodecg.listenFor('atualiza', (newval) => {
-	prazoEl.innerHTML = "Prazo: " + newval.Prazo;
-	lanceEl.innerHTML = + newval.Valor;
+nodecg.listenFor('valor', (newval) => {
+	lanceEl.innerHTML = newval;
 	var found = encontraBoi(loteRep.value);
 	if (found[0].hasOwnProperty('Kg_Total')) {
 		valorkgEl.innerHTML ="Valor por peso:" +(newval.Valor/(found[0].Kg_Total)).toFixed(2).replace(".",",");	;
@@ -96,6 +95,10 @@ nodecg.listenFor('atualiza', (newval) => {
 		valorunEl.innerHTML ="Valor por cabeça:" + newval.Valor/found[0].Quant + " p/ cabeça";		
 	}
 	
+})
+
+nodecg.listenFor('prazo', (newval) =>{
+	prazoEl.innerHTML = "Prazo: " + newval;
 })
 
 nodecg.listenFor('load', (newval) => {
@@ -118,4 +121,12 @@ nodecg.listenFor('load', (newval) => {
 
 })
 
-
+nodecg.listenfor('novolote', (newval) => {
+	loteEl.innerHTML = "Lote: " + newval.lote;
+	quantEl.innerHTML = "Quant: " + newval.quant;
+	tipoEl.innerHTML = "Tipo: " + newval.tipo;
+	racaEl.innerHTML = "Raca: " + newval.raca;
+	vendedorEl.innerHTML = "Vend: " + newval.vend;
+	pesototEl.innerHTML = "Peso: " + newval.peso;
+	lancamentoEl.innerHTML = "Value:" + newval.value;
+})
