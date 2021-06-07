@@ -13,6 +13,8 @@ const nl_racaElm = document.getElementById('nl_raca');
 const nl_vendElm = document.getElementById('nl_vend');
 const nl_pesoElm = document.getElementById('nl_peso');
 const nl_valueElm = document.getElementById('nl_value');
+const nl_prazoElm = document.getElementById('nl_prazo');
+const nl_parcelasElm = document.getElementById('nl_parcelas')
 
 function atualizaValor(){
 	const data = valorInput.value;
@@ -70,7 +72,9 @@ function novoLote(){
 	raca:nl_racaElm.value,
 	vend:nl_vendElm.value,
 	peso:nl_pesoElm.value,
-	valor:nl_valueElm.value}
-	
+	valor:nl_valueElm.value,
+	prazo:nl_prazoElm.value,
+	npar:nl_parcelasElm.value
+	}
 	nodecg.sendMessage('novolote', data);
 }

@@ -4,7 +4,7 @@ module.exports = function (nodecg) {
 
 	const fileData = nodecg.Replicant('filedata');
 
-
+	// ---------------- debug triggers
 	fileData.on('change', (newval) =>{
 		nodecg.log.info("importando");
 		nodecg.log.info(newval);
@@ -29,5 +29,10 @@ module.exports = function (nodecg) {
 		nodecg.log.info("Vend: " + newval.vend)
 		nodecg.log.info("Peso: " + newval.peso)
 		nodecg.log.info("Valor: " + newval.valor)
+	})
+
+	nodecg.listenFor('load', (newval) => {
+		nodecg.log.info("Carregando lote " + newval);
+		
 	})
 };
