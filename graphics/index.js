@@ -85,19 +85,19 @@ valorunRep.on('change', (newval) => {
 })
 valortotRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Valor_total') ? valortotEl.innerHTML = "Valor Total: " + found[0].Valor_total : valortotEl.innerHTML = "Valor Total: ";
+	found[0].hasOwnProperty('Valor_total') ? valortotEl.innerHTML = "Valor total: " + found[0].Valor_total : valortotEl.innerHTML = "Valor Total: ";
 })
 
 
 
 valorparcelaRep.on('change', (newval) => { 
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Valor_total') ? valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_total / found[0].n_parcelas : valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_total;
+	found[0].hasOwnProperty('Valor_total') ? valorparcelaEl.innerHTML = "Valor por parcela: " + found[0].Valor_total / found[0].n_parcelas : valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_total;
 })
 
 nparcelaRep.on('change', (newval) => {
 	var found = encontraBoi(newval.Lote);
-	found[0].hasOwnProperty('n_parcelas') ? valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_total / newval.Nparcela : valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_total;
+	found[0].hasOwnProperty('n_parcelas') ? valorparcelaEl.innerHTML = "Valor por parcela: " + found[0].Valor_total / newval.Nparcela : valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_total;
 })
 
 prazoRep.on('change', (newval) => {
@@ -113,20 +113,19 @@ lancamentoRep.on('change', (newval) => {
 // ------------------------- input handling -------------------------
 nodecg.listenFor('valor', (newval) => {
 	lanceRep.value = newval;
-	valortotEl.innerHTML = "Valor Total: "+ newval;
+	valorunEl.innerHTML = "Valor por cabeça: "+ newval;
 
 
 	// ---------- busca pelo lote no json --------
 	var found = encontraBoi(loteRep.value);
-	// ----------- e se n ta no json? (cai nos else)
 	if (found[0].hasOwnProperty('Kg_Total')) {
-		valorkgEl.innerHTML ="Valor por peso: " +(newval/(found[0].Kg_Total)).toFixed(2).replace(".",",");	;
+		valorkgEl.innerHTML ="Valor por peso: " +(newval * found[0].n_parcelas/(found[0].Peso_medio)).toFixed(2).replace(".",",");
 	}
 	if (found[0].hasOwnProperty('Quant')) {
-		valorunEl.innerHTML ="Valor por cabeça: " + (newval/(found[0].Quant)).toFixed(2).replace(".",",") + " p/ cabeça";
+		valortotEl.innerHTML ="Valor total: " + (newval*(found[0].Quant)).toFixed(2).replace(".",",");
 	}
 	if (found[0].hasOwnProperty('n_parcelas')){
-		valorparcelaEl.innerHTML = "Valor por parcela: "+ (newval / (found[0].n_parcelas)).toFixed(2).replace(".",",");
+		valorparcelaEl.innerHTML = "Valor por parcela: "+ (newval * found[0].Quant / (found[0].n_parcelas)).toFixed(2).replace(".",",");
 	}
 
 
@@ -134,8 +133,10 @@ nodecg.listenFor('valor', (newval) => {
 })
 
 nodecg.listenFor('prazo', (newval) =>{
+	var found = encontraBoi(loteRep.value);
 	prazoEl.innerHTML = "Prazo: " + newval.Prazo;
-	valorparcelaEl.innerHTML = "Valor por parcela: "+ lanceRep.value/newval.n_parcelas
+	valorparcelaEl.innerHTML = "Valor por parcela: "+ (lanceRep.value * found[0].Quant/newval.n_parcelas).toFixed(2).replace(".",",");
+	valorkgEl.innerHTML = "Valor por peso: " + (lanceRep.value * newval.n_parcelas / found[0].Peso_medio).toFixed(2).replace(".", ",");
 })
 
 nodecg.listenFor('load', (newval) => { // carrega pelo numero do lote
@@ -156,7 +157,7 @@ nodecg.listenFor('load', (newval) => { // carrega pelo numero do lote
 	lanceRep.value = valortotRep.value;
 		
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Kg_Total')? valorkgEl.innerHTML = "Valor por peso: " + (found[0].Valor_total / (found[0].Kg_Total)).toFixed(2).replace(".", ",") : valorkgEl.innerHTML = "Valor por peso: "
+	found[0].hasOwnProperty('Kg_Total')? valorkgEl.innerHTML = "Valor por peso: " + (found[0].Valor_por_cabeça * found[0].n_parcelas / (found[0].Peso_medio)).toFixed(2).replace(".", ",") : valorkgEl.innerHTML = "Valor por peso: "
 	if (found[0].hasOwnProperty('Quant')) {
 		valorunEl.innerHTML = "Valor por cabeça: " + (found[0].Valor_total / (found[0].Quant)).toFixed(2).replace(".",",") + " p/ cabeça";
 	}
@@ -170,12 +171,12 @@ nodecg.listenFor('novolote', (newval) => {
 	tipoEl.innerHTML = "Tipo: " + newval.tipo;
 	racaEl.innerHTML = "Raca: " + newval.raca;
 	vendedorEl.innerHTML = "Vendedor: " + newval.vend;
-	pesototEl.innerHTML = "Peso: " + newval.peso;
-	valorunEl.innerHTML = "Valor por cabeça: " + (newval.valor / newval.quant).toFixed(2).replace(".",",")
-	valortotEl.innerHTML = "Valor total: " + newval.valor;
-	valorkgEl.innerHTML = "Valor por peso: " + (newval.valor/newval.peso).toFixed(2).replace(".",",")
+	pesototEl.innerHTML = "Peso total: " + newval.peso;
+	valorunEl.innerHTML = "Valor por cabeça: " + newval.valor
+	valortotEl.innerHTML = "Valor total: " + (newval.valor * newval.quant).toFixed(2).replace(".", ",");;
+	valorkgEl.innerHTML = "Valor por peso: " + (newval.valor * newval.npar/newval.peso).toFixed(2).replace(".",",")
 	pesomedEl.innerHTML = "Peso Médio: " + (newval.peso/newval.quant).toFixed(2).replace(".",",");
 	prazoEl.innerHTML = "Prazo: " + newval.prazo;
-	valorparcelaEl.innerHTML = 'Valor por parcela: ' + (newval.valor/newval.npar).toFixed(2).replace(".",",");
+	valorparcelaEl.innerHTML = 'Valor por parcela: ' + (newval.valor * newval.quant/newval.npar).toFixed(2).replace(".",",");
 
 })

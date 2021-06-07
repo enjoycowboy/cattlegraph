@@ -1,6 +1,6 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 18px;
+	font-size: 30px;
 	letter-spacing: -1.4px;
 	word-spacing: 0.4px;
 	color: #000000;
@@ -17,16 +17,13 @@ body {
 	color:rgb(255, 255, 255);
 	font-size: 30px;
 }
-#lance{
+#valorun{
 	font-size: 40px;
 }
 
 #prazo{
 	font-variant: normal;
-	font-size: 28px;
 }
 #valorkg{
 	color: black;
-	
-	font-size: 24px;
 }
