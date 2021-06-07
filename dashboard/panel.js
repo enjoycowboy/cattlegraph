@@ -1,7 +1,10 @@
 const loteInput = document.getElementById('lote_input');
 const prazoInput = document.getElementById('prazo_input');
 const valorInput = document.getElementById('preco_input');
+const nparcelaInput = document.getElementById('n_parcelas');
 const fileData = nodecg.Replicant('filedata');
+const valorparcelaRep = nodecg.Replicant('valorparcela');
+
 
 const nl_loteElm = document.getElementById('nl_lote');
 const nl_quantElm = document.getElementById('nl_quant');
@@ -17,7 +20,7 @@ function atualizaValor(){
 }
 
 function atualizaPrazo(){
-	const data = prazoInput.value;
+	const data = {Prazo: prazoInput.value, n_parcelas: nparcelaInput.value};
 	nodecg.sendMessage('prazo', data);
 }
 
@@ -28,7 +31,6 @@ function buscaLote(){
 
 function loadFile() {
 	var input, file, fr;
-	var data = [];
 	if (typeof window.FileReader !== 'function') {
 		alert("The file API isn't supported on this browser yet.");
 		return;

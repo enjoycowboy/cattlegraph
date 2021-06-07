@@ -10,8 +10,9 @@ const valortotRep = nodecg.Replicant('valortot');
 const prazoRep = nodecg.Replicant('prazo');
 const lancamentoRep = nodecg.Replicant('lancamento');
 const valorkgRep = nodecg.Replicant('valorkg');
-
+const valorparcelaRep = nodecg.Replicant('valorparcela');
 const fileData = nodecg.Replicant('filedata');
+const nparcelaRep = nodecg.Replicant('n_parcela');
 
 const loteEl = document.getElementById('lote');
 const vendedorEl = document.getElementById('vendedor');
@@ -26,6 +27,7 @@ const prazoEl = document.getElementById('prazo');
 const lancamentoEl = document.getElementById('lancamento');
 const lanceEl = document.getElementById('lance');
 const valorkgEl = document.getElementById('valorkg');
+const valorparcelaEl = document.getElementById('valorparcela');
 
 var data = [];
 fileData.on('change', (newval) => {
@@ -40,7 +42,7 @@ function encontraBoi(code){
 	);
 }
 
-
+// ------------------ on change replicants --------------------
 loteRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
 	found[0].hasOwnProperty('Lote') ? loteEl.innerHTML = "Lote: " + found[0].Lote : loteEl.innerHTML = "Lote: ";
@@ -55,7 +57,7 @@ quantRep.on('change', (newval) => {
 })
 tipoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
-	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = "Tipo: "+ found[0].Tipo : tipoEl.innerHTML = "Tipo: ";
+	found[0].hasOwnProperty('Tipo') ? tipoEl.innerHTML = "Tipo: " + found[0].Tipo : tipoEl.innerHTML = "Tipo: ";
 })
 racaRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
@@ -77,6 +79,17 @@ valortotRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
 	found[0].hasOwnProperty('Valor_Total') ? valortotEl.innerHTML = "Valor Total: " + found[0].Valor_Total : valortotEl.innerHTML = "Valor Total: ";
 })
+
+valorparcelaRep.on('change', (newval) => {
+	var found = encontraBoi(newval);
+	found[0].hasOwnProperty('Valor_Total') ? valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_Total / found[0].n_parcelas : valorparcelaEl.innerHTML = "Valor Por Parcela: " + found[0].Valor_Total;
+})
+
+nparcelaRep.on('change', (newval) => {
+	var found = encontraBoi(newval);
+	found[0].hasOwnProperty('n_parcelas') ? valorparcelaRep.value = found[0].Valor_Total / newval : valorparcelaRep.value = found[0].Valor_Total;
+})
+
 prazoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
 	found[0].hasOwnProperty('Prazo') ? prazoEl.innerHTML = "Prazo: " + found[0].Prazo : prazoEl.innerHTML = "Prazo: ";
@@ -85,6 +98,8 @@ lancamentoRep.on('change', (newval) => {
 	var found = encontraBoi(newval);
 	found[0].hasOwnProperty('Lancamento') ? lanceEl.innerHTML = found[0].Lancamento : lancamentoEl.innerHTML = "Lançamento: ";
 })
+// ------------------------- end replicants ---------------------------
+
 
 nodecg.listenFor('valor', (newval) => {
 	lanceEl.innerHTML = newval;
@@ -94,11 +109,15 @@ nodecg.listenFor('valor', (newval) => {
 	} else if (found[0].hasOwnProperty('Quant')) {
 		valorunEl.innerHTML ="Valor por cabeça:" + newval/found[0].Quant + " p/ cabeça";		
 	}
+	if (found[0].hasOwnProperty('n_parcelas')){
+		valorparcelaRep.value = found[0].Valor_Total / found[0].n_parcelas;
+	}
 	
 })
 
 nodecg.listenFor('prazo', (newval) =>{
-	prazoEl.innerHTML = "Prazo: " + newval;
+	prazoEl.innerHTML = "Prazo: " + newval.Prazo;
+	nparcelaRep.value = newval.n_parcelas;
 })
 
 nodecg.listenFor('load', (newval) => {
